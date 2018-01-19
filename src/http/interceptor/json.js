@@ -2,8 +2,7 @@
  * JSON Interceptor.
  */
 
-import Url from '../../url/index';
-import { when, isObject } from '../../util';
+import {when, isObject} from '../../util';
 
 export default function (request, next) {
 
@@ -40,7 +39,8 @@ export default function (request, next) {
 
 function isJson(str) {
 
-    var start = str.match(/^\[|^\{(?!\{)/), end = {'[': /]$/, '{': /}$/};
+    const start = str.match(/^\s*(\[|\{)/);
+    const end = {'[': /]\s*$/, '{': /}\s*$/};
 
-    return start && end[start[0]].test(str);
+    return start && end[start[1]].test(str);
 }
